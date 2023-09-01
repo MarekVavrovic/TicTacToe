@@ -1,6 +1,10 @@
 const winSound = document.getElementById("winSound");
 const clickSound = document.getElementById("clickSound");
 
+const modal = document.getElementById("myModal");
+const modalText = document.getElementById("modalText");
+const closeModal = document.getElementById("closeModal");
+
 const boardElement = document.getElementById("board");
 const boardSizeSelect = document.getElementById("boardSizeSelect");
 const boardWinSelect = document.getElementById("boardWinSelect");
@@ -43,19 +47,27 @@ function handleCellClick(event) {
     board[row][col] = currentPlayer;
      playSound(clickSound);
 
-    if (checkWin(row, col)) {
-       
-      alert(currentPlayer + " wins!");
+    if (checkWin(row, col)) {       
+      modalText.textContent = currentPlayer + " wins!";
+      showModal();
       playSound(winSound);
       resetGame();
-    } else if (checkDraw()) {
-   
-      alert("It's a draw!");
+    } else if (checkDraw()) {   
+     modalText.textContent = "It's a draw!";
+     showModal();
       resetGame();
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
     }
   }
+}
+
+function showModal() {
+  modal.style.display = "block";
+}
+
+function hideModal() {
+  modal.style.display = "none";
 }
 
 function playSound(soundElement) {
@@ -150,5 +162,6 @@ boardWin = parseInt(this.value);
   resetGame();
 });
 
+closeModal.addEventListener("click", hideModal);
 
 createBoard();
