@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="gameTitle">Tic Tac Toe</h1>
+
+      <div class="dropdownContainer">
+        <div class="dropdown">
+          <label for="boardSizeSelect">Board Size: </label>
+          <select id="boardSizeSelect">
+            <option value="3">3x3</option>
+            <option value="4">4x4</option>
+            <option value="5" selected>5x5</option>
+            <option value="6">6x6</option>
+            <option value="7">7x7</option>
+            <option value="8">8x8</option>
+            <option value="9">9x9</option>
+            <option value="10">10x10</option>
+          </select>
+        </div>
+
+        <div class="dropdown-2">
+          <label for="boardWinSelect">Select winer: </label>
+          <select id="boardWinSelect">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+      </div>
+
+      <!--BOARD-->
+
+      <div class="board">
+        <div class="container">
+          <div class="board" id="board"></div>
+        </div>
+      </div>
+    </main>
+
+    <!--AUDIO-->
+
+    <audio id="clickSound">
+      <source src="./assets/click.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="winSound">
+      <source src="./assets/win.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script src="app.js"></script>
+  </body>
+</html>
