@@ -215,7 +215,7 @@ function displayWinner(player) {
   const probabilityText = calculateWinProbability(playerXScore, playerOScore);
 
   // Display the score and probability in the modal on separate lines
-  modalText.innerHTML = `<div><span class="score">Score:</span> ${playerXName} ${playerXScore} ${playerOScore} ${playerOName}</div><div><span class="score">Probability Of Winning:</span></div><div>${probabilityText}</div>`;
+  modalText.innerHTML = `<div><span class="score">Score:</span> ${playerXName}  ( ${playerXScore} - ${playerOScore} )  ${playerOName}</div><div><span class="score">Probability Of Winning:</span></div><div>${probabilityText}</div>`;
   showModal();
   playSound(winSound);
   resetGame();
@@ -247,7 +247,7 @@ function calculateWinProbability(playerXScore, playerOScore) {
   const probabilityX = (playerXScore / totalGames) * 100; 
   const probabilityO = (playerOScore / totalGames) * 100; 
 
-  return `${playerXName} ${probabilityX.toFixed(
+  return `${playerXName}: ${probabilityX.toFixed(
     0
   )}%, ${playerOName}: ${probabilityO.toFixed(0)}%`;
 }
@@ -279,7 +279,7 @@ resetScoreButton.addEventListener("click", function () {
   playerXScore = 0;
   playerOScore = 0;
 
-  modalText.innerHTML = `<div style="font-size: 20px;><span class="score"  "></span> ${playerXName} ${playerXScore}:${playerOScore} ${playerOName} </div>`;
+  modalText.innerHTML = `<div style="font-size: 15px;><span class="score"  "></span> ${playerXName}: ${playerXScore}:${playerOScore}: ${playerOName} </div>`;
   showModal();
 });
 
