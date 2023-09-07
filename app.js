@@ -12,6 +12,7 @@ const soldOutModal = document.getElementById("soldOutModal");
 const closeSoldOutModal = document.getElementById("closeSoldOutModal");
 
 soldOutButton.addEventListener("click", function () {
+  playSound(sidebarSound)
   sidebar.classList.toggle("open");
   soldOutModal.style.visibility = "visible";
 });
@@ -80,7 +81,7 @@ function makeMove(cell) {
       currentPlayer = "O"; // Switch to the next player
     } else if (currentPlayer === "O") {
       cell.style.color = "blue";
-      currentPlayer = "X"; 
+      currentPlayer = "X";
     }
   }
 }
@@ -105,7 +106,6 @@ function createBoard() {
   }
 }
 
-
 function handleCellClick(event) {
   const row = parseInt(event.target.dataset.row);
   const col = parseInt(event.target.dataset.col);
@@ -115,11 +115,10 @@ function handleCellClick(event) {
     board[row][col] = currentPlayer;
     playSound(clickSound);
 
-  
     event.target.classList.remove(`player${currentPlayer}`);
 
     if (checkWin(row, col)) {
-      // Display the winner 
+      // Display the winner
       displayWinner(currentPlayer === "X" ? playerXName : playerOName);
     } else if (checkDraw()) {
       modalText.textContent = "It's a draw!";
@@ -209,7 +208,7 @@ function displayWinner(player) {
   // Calculate win probabilities
   const probabilityText = calculateWinProbability(playerXScore, playerOScore);
 
-  // Display the score and probability in the modal 
+  // Display the score and probability in the modal
   modalText.innerHTML = `<div><span class="score">Score:</span> ${playerXName}  ( ${playerXScore} - ${playerOScore} )  ${playerOName}</div><div><span class="score">Probability Of Winning:</span></div><div>${probabilityText}</div>`;
   showModal();
   playSound(winSound);
@@ -249,6 +248,8 @@ function calculateWinProbability(playerXScore, playerOScore) {
 
 //Clear board
 clearBoard.addEventListener("click", () => {
+  playSound(sidebarSound);
+  sidebar.classList.toggle("open");
   resetGame();
 });
 
@@ -258,7 +259,7 @@ boardSizeSelect.addEventListener("change", function () {
   resetGame();
 });
 
-//Reset match logic 
+//Reset match logic
 boardWinSelect.addEventListener("change", function () {
   boardWin = parseInt(this.value);
   resetGame();
@@ -267,6 +268,7 @@ boardWinSelect.addEventListener("change", function () {
 closeModal.addEventListener("click", hideModal);
 
 resetScoreButton.addEventListener("click", function () {
+  playSound(sidebarSound);
   sidebar.classList.toggle("open");
   showModal();
   playerXScore = 0;
