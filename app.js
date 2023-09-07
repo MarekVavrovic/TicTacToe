@@ -71,6 +71,7 @@ let boardSize = parseInt(boardSizeSelect.value);
 
 let currentPlayer = "X";
 
+//color coding for players
 function makeMove(cell) {
   if (!cell.textContent) {
     // Check if the cell is empty
@@ -93,7 +94,7 @@ let board = new Array(boardSize)
 
 function createBoard() {
   boardElement.innerHTML = "";
-  boardElement.style.gridTemplateColumns = `repeat(${boardSize}, 70px)`;
+  boardElement.style.gridTemplateColumns = `repeat(${boardSize}, 50px)`;
 
   for (let row = 0; row < boardSize; row++) {
     for (let col = 0; col < boardSize; col++) {
