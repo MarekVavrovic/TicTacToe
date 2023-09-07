@@ -41,14 +41,16 @@
             >Board Size:
           </label>
           <select id="boardSizeSelect">
-            <option value="3" selected>3x3</option>
+            <option value="3">3x3</option>
             <option value="4">4x4</option>
-            <option value="5">5x5</option>
+            <option value="5" selected>5x5</option>
             <option value="6">6x6</option>
             <option value="7">7x7</option>
             <option value="8">8x8</option>
             <option value="9">9x9</option>
             <option value="10">10x10</option>
+            <option value="11">11x11</option>
+            <option value="12">12x12</option>
           </select>
         </div>
 
@@ -88,18 +90,6 @@
       </button>
     </div>
 
-    <!--AUDIO-->
-
-    <audio id="clickSound">
-      <source src="./assets/click.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <audio id="winSound">
-      <source src="./assets/win.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-
     <!-- MODAL -->
     <div id="myModal" class="modal">
       <div class="modal-content">
@@ -110,7 +100,7 @@
       </div>
     </div>
 
-    <!--Buy Now Modal -->
+    <!--BUY NOW MODAL -->
     <div id="soldOutModal" class="modal">
       <div class="modal-content">
         <span class="close-button" id="closeSoldOutModal"
@@ -119,6 +109,22 @@
         <p id="soldOutText"><span class="soldOut-icon"></span>Please try again later... </p>
       </div>
     </div>
+
+  <!--AUDIO-->
+    <audio id="clickSound">
+      <source src="./assets/click.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio id="winSound">
+      <source src="./assets/win.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+     <audio id="sidebarSound">
+      <source src="./assets/sidebar.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
 
     <script src="app.js"></script>
   </body>

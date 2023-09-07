@@ -1,5 +1,6 @@
 const winSound = document.getElementById("winSound");
 const clickSound = document.getElementById("clickSound");
+const sidebarSound = document.getElementById("sidebarSound");
 
 const modal = document.getElementById("myModal");
 const modalText = document.getElementById("modalText");
@@ -10,17 +11,14 @@ const soldOutButton = document.getElementById("soldOutButton");
 const soldOutModal = document.getElementById("soldOutModal");
 const closeSoldOutModal = document.getElementById("closeSoldOutModal");
 
-  soldOutButton.addEventListener("click", function () {
-    sidebar.classList.toggle("open");
-    soldOutModal.style.visibility = "visible";
-  });
+soldOutButton.addEventListener("click", function () {
+  sidebar.classList.toggle("open");
+  soldOutModal.style.visibility = "visible";
+});
 
-  closeSoldOutModal.addEventListener("click", function () {
-    // Close the "Sold Out" modal when the close button is clicked
-    soldOutModal.style.visibility = "hidden";
-  });
-
-
+closeSoldOutModal.addEventListener("click", function () {
+  soldOutModal.style.visibility = "hidden";
+});
 
 const boardElement = document.getElementById("board");
 const boardSizeSelect = document.getElementById("boardSizeSelect");
@@ -30,18 +28,17 @@ const clearBoard = document.getElementById("clearBoard");
 const toggleSidebarButton = document.getElementById("toggleSidebar");
 const toggleSidebarEye = document.getElementById("toggleSidebar-2");
 const sidebar = document.getElementById("sidebar");
-// Get the reset button element
 const resetScoreButton = document.getElementById("resetScoreButton");
 
 toggleSidebarButton.addEventListener("click", () => {
+  playSound(sidebarSound);
   sidebar.classList.toggle("open");
 });
 
 toggleSidebarEye.addEventListener("click", () => {
+  playSound(sidebarSound);
   sidebar.classList.toggle("open");
 });
-
-
 
 // Player names input elements
 const playerXNameInput = document.getElementById("playerXName");
@@ -83,7 +80,7 @@ function makeMove(cell) {
       currentPlayer = "O"; // Switch to the next player
     } else if (currentPlayer === "O") {
       cell.style.color = "blue";
-      currentPlayer = "X"; // Switch to the next player
+      currentPlayer = "X"; 
     }
   }
 }
@@ -108,7 +105,7 @@ function createBoard() {
   }
 }
 
-// Update the handleCellClick function to use player names
+
 function handleCellClick(event) {
   const row = parseInt(event.target.dataset.row);
   const col = parseInt(event.target.dataset.col);
@@ -118,11 +115,11 @@ function handleCellClick(event) {
     board[row][col] = currentPlayer;
     playSound(clickSound);
 
-    // Remove the current player's class from the cell
+  
     event.target.classList.remove(`player${currentPlayer}`);
 
     if (checkWin(row, col)) {
-      // Display the winner using player names
+      // Display the winner 
       displayWinner(currentPlayer === "X" ? playerXName : playerOName);
     } else if (checkDraw()) {
       modalText.textContent = "It's a draw!";
@@ -146,12 +143,10 @@ function hideModal() {
   modal.style.visibility = "hidden";
 }
 
-
 function playSound(soundElement) {
   soundElement.currentTime = 0;
   soundElement.play();
 }
-
 
 //CheckWin
 function checkWin(row, col) {
@@ -196,8 +191,7 @@ function checkWin(row, col) {
   return false; // No winning sequence found
 }
 
-// Modify the modal to display player names when a player wins
-
+// Display player names when a player wins
 let playerXScore = 0;
 let playerOScore = 0;
 
@@ -215,7 +209,7 @@ function displayWinner(player) {
   // Calculate win probabilities
   const probabilityText = calculateWinProbability(playerXScore, playerOScore);
 
-  // Display the score and probability in the modal on separate lines
+  // Display the score and probability in the modal 
   modalText.innerHTML = `<div><span class="score">Score:</span> ${playerXName}  ( ${playerXScore} - ${playerOScore} )  ${playerOName}</div><div><span class="score">Probability Of Winning:</span></div><div>${probabilityText}</div>`;
   showModal();
   playSound(winSound);
@@ -245,28 +239,26 @@ function resetGame() {
 //Game Score, Probability outcome
 function calculateWinProbability(playerXScore, playerOScore) {
   const totalGames = playerXScore + playerOScore;
-  const probabilityX = (playerXScore / totalGames) * 100; 
-  const probabilityO = (playerOScore / totalGames) * 100; 
+  const probabilityX = (playerXScore / totalGames) * 100;
+  const probabilityO = (playerOScore / totalGames) * 100;
 
   return `${playerXName}: ${probabilityX.toFixed(
     0
   )}%, ${playerOName}: ${probabilityO.toFixed(0)}%`;
 }
 
-
-
 //Clear board
 clearBoard.addEventListener("click", () => {
   resetGame();
 });
 
-//RESET BOARD-SIZE
+//Reset board size
 boardSizeSelect.addEventListener("change", function () {
   boardSize = parseInt(this.value);
   resetGame();
 });
 
-//RESET WINNING LOGIC
+//Reset match logic 
 boardWinSelect.addEventListener("change", function () {
   boardWin = parseInt(this.value);
   resetGame();
@@ -283,8 +275,5 @@ resetScoreButton.addEventListener("click", function () {
   modalText.innerHTML = `<div style="font-size: 15px;><span class="score"  "></span> ${playerXName}: ${playerXScore}:${playerOScore}: ${playerOName} </div>`;
   showModal();
 });
-
-
-
 
 createBoard();
